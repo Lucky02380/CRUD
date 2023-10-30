@@ -1,9 +1,9 @@
-import { response } from "express"
-import Student from '../model/studentSchema.js'
+import { response, Request, Response } from "express"
+import Student from '../model/studentSchema.ts'
 
 
 //Show list of students
- const index = (req,res,next) => {
+ const index = (req:Request,res:Response) => {
     Student.find()
     .then(response => {
         res.json({
@@ -17,7 +17,7 @@ import Student from '../model/studentSchema.js'
     })
 }
 
- const show = (req, res, next) => {
+ const show = (req:Request,res:Response) => {
     console.log(req.body)
     let username = req.body.username
     // console.log(username)
@@ -35,7 +35,7 @@ import Student from '../model/studentSchema.js'
     })
 }
 
- const store = (req, res, next) => {
+ const store = (req:Request,res:Response) => {
     console.log(req.body)
     let student = new Student({
         username: req.body.username,
@@ -55,7 +55,7 @@ import Student from '../model/studentSchema.js'
     })
 }
 
- const update = (req, res, next) => {
+ const update = (req:Request,res:Response) => {
     console.log(req.body)
     let username = req.body.username
     // console.log(username)
@@ -80,7 +80,7 @@ import Student from '../model/studentSchema.js'
 }
 
 
- const destroy = (req, res, next) => {
+ const destroy = (req:Request,res:Response) => {
     let username = req.body.username
     Student.findOneAndDelete({username : username})
     .then(response => {

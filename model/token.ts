@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const TokenSchema = mongoose.Schema({
+const TokenSchema = new mongoose.Schema({
     token: {
         type: String,
         required: true

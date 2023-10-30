@@ -1,13 +1,13 @@
 import express from 'express'
 import mongoose from "mongoose";
 import bodyParser from 'body-parser';
-import Route from './route.js'
+import Route from './route.ts'
 import dotenv from 'dotenv';
 dotenv.config()
 
 const user = process.env.DB_USER
 const password = process.env.DB_PASSWORD
-mongoose.connect(`mongodb+srv://${user}:${password}@cluster0.xycuuto.mongodb.net/`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb+srv://${user}:${password}@cluster0.xycuuto.mongodb.net/`);
 const db = mongoose.connection
 
 db.on('error', (err) => {

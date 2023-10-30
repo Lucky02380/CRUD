@@ -1,7 +1,7 @@
 import express from 'express';
-import {index,show,store,update,destroy} from './controller/studentController.js'
+import {index,show,store,update,destroy} from './controller/studentController.ts'
 
-import { showUsers, delUser, singupUser, loginUser } from './controller/userController.js';
+import { showUsers, delUser, singupUser, loginUser } from './controller/userController.ts';
 
 const router = express.Router()
 

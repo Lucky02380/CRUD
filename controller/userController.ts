@@ -1,10 +1,11 @@
-import Student from '../model/studentSchema.js'
+import Student from '../model/studentSchema.ts'
 import crypto from 'crypto'
+import { Request, Response } from 'express';
 import CryptoJS from 'crypto-js';
 import jwt from 'jsonwebtoken';
 
-import User from '../model/user.js';
-import Token from '../model/token.js'
+import User from '../model/user.ts';
+import Token from '../model/token.ts'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -23,7 +24,7 @@ const iv =  process.env.iv
 //    return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
 // }
 
-export const showUsers = (req,res) => {
+export const showUsers = (req:Request,res:Response) => {
     User.find()
     .then(response => {
         res.json({
@@ -37,7 +38,7 @@ export const showUsers = (req,res) => {
     })
 }
 
-export const delUser = (req, res, next) => {
+export const delUser = (req:Request,res:Response) => {
     let username = req.body.username
     User.findOneAndDelete({username : username})
     .then(response => {
@@ -52,7 +53,7 @@ export const delUser = (req, res, next) => {
     })
 }
 
-export const singupUser = (request, response) => {
+export const singupUser = (request:Request , response: Response) => {
     try {
         console.log(request.body)
         // const hashedPassword = encrypt(request.body.password).encryptedData
@@ -71,7 +72,7 @@ export const singupUser = (request, response) => {
 }
 
 
-export const loginUser = async (request, response) => {
+export const loginUser = async (request:Request , response: Response) => {
     let user = await  User.findOne({ username: request.body.username });
     // console.log(user)
     console.log(user.password)
@@ -99,7 +100,7 @@ export const loginUser = async (request, response) => {
             
             const newToken = new Token({ token: refreshToken });
             newToken.save();
-            response.status(200).json({ refreshToken: refreshToken,name: user.name, username: user.username });
+            response.status(200).json({ refreshToken: refreshToken, username: user.username });
         
         } else {
             response.status(400).json({ msg: 'Password does not match' })
