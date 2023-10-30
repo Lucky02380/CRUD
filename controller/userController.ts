@@ -24,6 +24,7 @@ const iv =  process.env.iv
 //    return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
 // }
 
+//show users
 export const showUsers = (req:Request,res:Response) => {
     User.find()
     .then(response => {
@@ -38,6 +39,7 @@ export const showUsers = (req:Request,res:Response) => {
     })
 }
 
+//delete user
 export const delUser = (req:Request,res:Response) => {
     let username = req.body.username
     User.findOneAndDelete({username : username})
@@ -53,6 +55,7 @@ export const delUser = (req:Request,res:Response) => {
     })
 }
 
+//signing in the user
 export const singupUser = (request:Request , response: Response) => {
     try {
         console.log(request.body)
@@ -71,7 +74,7 @@ export const singupUser = (request:Request , response: Response) => {
     }
 }
 
-
+//logging in the user
 export const loginUser = async (request:Request , response: Response) => {
     let user = await  User.findOne({ username: request.body.username });
     // console.log(user)

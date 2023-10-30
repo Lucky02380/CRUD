@@ -17,6 +17,7 @@ import Student from '../model/studentSchema.ts'
     })
 }
 
+//show a specific user
  const show = (req:Request,res:Response) => {
     console.log(req.body)
     let username = req.body.username
@@ -35,6 +36,7 @@ import Student from '../model/studentSchema.ts'
     })
 }
 
+//create a new user
  const store = (req:Request,res:Response) => {
     console.log(req.body)
     let student = new Student({
@@ -55,17 +57,10 @@ import Student from '../model/studentSchema.ts'
     })
 }
 
+//update user data
  const update = (req:Request,res:Response) => {
     console.log(req.body)
     let username = req.body.username
-    // console.log(username)
-    // let MyQuery = {}
-    // let updatedData = { 
-    //     $set:{
-    //         courseA: req.body.courseA,
-    //         courseB: req.body.courseB
-    //     }
-    // }
     Student.findOneAndUpdate({username : username}, {courseA: req.body.courseA,courseB: req.body.courseB})
     .then(response => {
         res.json({
@@ -80,6 +75,7 @@ import Student from '../model/studentSchema.ts'
 }
 
 
+//delete user
  const destroy = (req:Request,res:Response) => {
     let username = req.body.username
     Student.findOneAndDelete({username : username})

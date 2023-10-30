@@ -5,13 +5,14 @@ import { showUsers, delUser, singupUser, loginUser } from './controller/userCont
 
 const router = express.Router()
 
+//post routes
 router.get('/', index)
 router.get('/show', show)
 router.post('/store', store)
 router.put('/update', update)
 router.delete('/delete', destroy)
 
-
+//user routes
 router.get('/showUsers', showUsers)
 router.delete('/deleteUser', delUser)
 router.post('/login', loginUser);
